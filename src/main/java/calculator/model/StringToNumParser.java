@@ -11,6 +11,9 @@ public class StringToNumParser {
     private static final int CUSTOM_DELIMITER_PREFIX_LENGTH = CUSTOM_DELIMITER_PREFIX.length(); // 2
 
     public List<Integer> parse(String input) {
+        if (input == null || input.isEmpty()) {
+            return Collections.emptyList();
+        }
         String numberString = input;
         if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
             final int endDelimiterIndex = input.indexOf(CUSTOM_DELIMITER_SUFFIX);
@@ -53,7 +56,13 @@ public class StringToNumParser {
             return 0;
         }
 
-        int number = Integer.parseInt(numberString);
+        int number;
+
+        try {
+            number = Integer.parseInt(numberString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] String contains not Integer.");
+        }
 
         if (number <= 0) {
             throw new IllegalArgumentException("[ERROR] String should not contain negative number.");
