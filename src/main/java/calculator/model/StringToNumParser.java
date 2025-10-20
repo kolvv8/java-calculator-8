@@ -30,5 +30,8 @@ public class StringToNumParser {
         if (delimiter.length() != 1) {
             throw new IllegalArgumentException("[ERROR] Custom delimiter should contain only one character.");
         }
+        if (Character.isDigit(delimiter.charAt(0))) {
+            throw new IllegalArgumentException("[ERROR] Custom delimiter should not contain digit.");
+        }
     }
 }
