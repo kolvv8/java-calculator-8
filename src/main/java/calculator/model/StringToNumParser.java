@@ -17,11 +17,18 @@ public class StringToNumParser {
 
             if (endDelimiterIndex == beginNumberStringIndex) {
                 String customDelimiter = input.substring(CUSTOM_DELIMITER_PREFIX_LENGTH, endDelimiterIndex);
+                validateCustomDelimiter(customDelimiter);
                 numberString = input.substring(endDelimiterIndex + 2);
 
                 DELIMITERS += customDelimiter;
             }
         }
         DELIMITERS = '[' + DELIMITERS + ']';
+    }
+
+    private void validateCustomDelimiter(String delimiter) {
+        if (delimiter.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] Custom delimiter should contain only one character.");
+        }
     }
 }
