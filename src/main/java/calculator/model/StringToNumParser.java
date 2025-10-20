@@ -52,6 +52,12 @@ public class StringToNumParser {
         if (numberString.trim().isEmpty()) {
             return 0;
         }
-        return Integer.parseInt(numberString);
+
+        int number = Integer.parseInt(numberString);
+
+        if (number <= 0) {
+            throw new IllegalArgumentException("[ERROR] String should not contain negative number.");
+        }
+        return number;
     }
 }
