@@ -42,9 +42,16 @@ public class StringToNumParser {
         List<Integer> numberList = new ArrayList<>();
 
         for (String numberString : numberStrings) {
-            int number = Integer.parseInt(numberString);
+            int number = checkPositiveInt(numberString);
             numberList.add(number);
         }
         return numberList;
+    }
+
+    private int checkPositiveInt(String numberString) {
+        if (numberString.trim().isEmpty()) {
+            return 0;
+        }
+        return Integer.parseInt(numberString);
     }
 }
